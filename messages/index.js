@@ -5,12 +5,12 @@ For a complete walkthrough of creating this type of bot see the article at
 http://docs.botframework.com/builder/node/guides/understanding-natural-language/
 -----------------------------------------------------------------------------*/
 "use strict";
-var bot              = null
+var bot              = null,
     builder          = require("botbuilder"),
     botbuilder_azure = require("botbuilder-azure"),
     connector        = null,
     Dexter           = require('./dexter.js'),
-    dexterBot        = 
+    dexterBot        = null,
     intents          = null,
     luisAPIKey       = null,
     luisAPIHostName  = null,
