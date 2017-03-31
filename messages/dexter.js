@@ -44,9 +44,14 @@ module.exports = (function() {
       },
 
       pokedexHandler: function (session, args) {
-        var pokemonEntity  = this.builder.EntityRecognizer.findEntity(args.entities, 'Pokémon'); 
+        var pokemonEntity  = this._builder.EntityRecognizer.findEntity(args.entities, 'Pokémon'); 
         this._pokemonName = pokemonEntity ? pokemonEntity.entity.toLowerCase() : null,
         this._session = session;
+        if(this._pokemonName === null)
+        {
+          this._session.send("I'm sorry I was unable to locate a Pokemon when you said, '" + session.message.text + "'. Please try again.");
+          return;
+        }
         this._pokedex.getPokemonSpeciesByName(this._pokemonName)
         .then(this._onPokemonFound)
         .catch(this._onPokemonError);

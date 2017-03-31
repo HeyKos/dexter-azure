@@ -20,10 +20,10 @@ var bot              = null,
 
 useEmulator = (process.env.NODE_ENV == 'development');
 
-connector = useEmulator ? new builder.ChatConnector() : new botbuilder_azure.BotServiceConnector({
-    appId: process.env['MicrosoftAppId'],
-    appPassword: process.env['MicrosoftAppPassword'],
-    stateEndpoint: process.env['BotStateEndpoint'],
+connector = useEmulator ? new builder.ChatConnector({appId: "46b03732-11b2-454e-9966-69b52a33f749", appPassword: "om4TNgjfzks2L2qkX2V56ms"}) : new botbuilder_azure.BotServiceConnector({
+    appId:          process.env['MicrosoftAppId'],
+    appPassword:    process.env['MicrosoftAppPassword'],
+    stateEndpoint:  process.env['BotStateEndpoint'],
     openIdMetadata: process.env['BotOpenIdMetadata']
 });
 
@@ -34,12 +34,17 @@ luisAppId       = process.env.LuisAppId;
 luisAPIKey      = process.env.LuisAPIKey;
 luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 
+// luisAppId       = "a24e70b6-6373-4c94-8d90-104cad1d28f6";
+// luisAPIKey      = "2ba3ca73f15d47838c45829002e79655";
+// luisAPIHostName = "westus.api.cognitive.microsoft.com"
+
+
 const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
 
 // Main dialog with LUIS
 recognizer = new builder.LuisRecognizer(LuisModelUrl);
 intents = new builder.IntentDialog({ recognizers: [recognizer] })
-            .matches("Pokédex", dexterBot.pokedexHandler)
+            .matches("pokedex", dexterBot.pokedexHandler)
             .onDefault(dexterBot.defaultHandler);
 
 bot.dialog('/', intents);    
@@ -49,7 +54,7 @@ if (useEmulator) {
         server  = restify.createServer();
 
     server.listen(3978, function() {
-        console.log('test bot endpont at http://localhost:3978/api/messages');
+        console.log('test bot endpoint at http://localhost:3978/api/messages');
     });
     server.post('/api/messages', connector.listen());    
 } 
