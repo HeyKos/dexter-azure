@@ -34,11 +34,6 @@ luisAppId       = process.env.LuisAppId;
 luisAPIKey      = process.env.LuisAPIKey;
 luisAPIHostName = process.env.LuisAPIHostName || 'westus.api.cognitive.microsoft.com';
 
-// luisAppId       = "a24e70b6-6373-4c94-8d90-104cad1d28f6";
-// luisAPIKey      = "2ba3ca73f15d47838c45829002e79655";
-// luisAPIHostName = "westus.api.cognitive.microsoft.com"
-
-
 const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' + luisAppId + '&subscription-key=' + luisAPIKey;
 
 // Main dialog with LUIS
