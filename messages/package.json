@@ -5,7 +5,9 @@
   "main": "index.js",
   "dependencies": {
     "botbuilder": "^3.7.0",
-    "botbuilder-azure": "3.0.2"
+    "botbuilder-azure": "3.0.2",
+    "lodash": "^4.17.4",
+    "pokedex-promise-v2": "^3.0.3"
   },
   "devDependencies": {
     "restify": "^4.3.0"
