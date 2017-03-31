@@ -1,0 +1,32 @@
+{
+  "name": "dexter-azure",
+  "version": "1.0.0",
+  "description": "Look up Pokedex data for Pokemon.",
+  "main": "index.js",
+  "dependencies": {
+    "botbuilder": "^3.7.0",
+    "botbuilder-azure": "3.0.2"
+  },
+  "devDependencies": {
+    "restify": "^4.3.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Koser",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeyKos/dexter-azure.git"
+  },
+  "keywords": [
+    "Pokemon",
+    "Pokedex",
+    "Azure",
+    "Bot"
+  ],
+  "bugs": {
+    "url": "https://github.com/HeyKos/dexter-azure/issues"
+  },
+  "homepage": "https://github.com/HeyKos/dexter-azure#readme"
+}
