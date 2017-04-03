@@ -9,12 +9,14 @@ var bot              = null,
     builder          = require("botbuilder"),
     botbuilder_azure = require("botbuilder-azure"),
     connector        = null,
+    DataGenerator    = require('../training-data/pokedex-data-generator.js'),
     Dexter           = require('./dexter.js'),
     dexterBot        = null,
     intents          = null,
     luisAPIKey       = null,
     luisAPIHostName  = null,
     luisAppId        = null,
+    trainingData     = null,
     recognizer       = null,
     useEmulator      = null;
 
@@ -45,14 +47,18 @@ intents = new builder.IntentDialog({ recognizers: [recognizer] })
 bot.dialog('/', intents);    
 
 if (useEmulator) {
-    var restify = require('restify'),
-        server  = restify.createServer();
+  var restify = require('restify'),
+      server  = restify.createServer();
 
-    server.listen(3978, function() {
-        console.log('test bot endpoint at http://localhost:3978/api/messages');
-    });
-    server.post('/api/messages', connector.listen());    
+  // Generate training data.
+  trainingData = new DataGenerator();
+  trainingData.saveLuisTrainingData();
+
+  server.listen(3978, function() {
+      console.log('test bot endpoint at http://localhost:3978/api/messages');
+  });
+  server.post('/api/messages', connector.listen());    
 } 
 else {
-    module.exports = { default: connector.listen() }
+  module.exports = { default: connector.listen() }
 }
